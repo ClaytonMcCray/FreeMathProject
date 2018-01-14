@@ -127,16 +127,18 @@ class MatrixOperations:
     def augment(A: Matrix, B: Matrix, name: str=None) -> Matrix:
         m, n = A.size()
         p, q = B.size()
-        mat1 = A.matrix
-        mat2 = B.matrix
+        # The deepcopy is necessary so that it doesn't actually change the original matrix
+        mat1 = deepcopy(A.matrix)
+        mat2 = deepcopy(B.matrix)
         if m != p:
-            raise IndexError('Matrices must have the same amount of rows to augment')
+            raise IndexError('Matrices must have the number of rows to augment')
         for row in range(m):
             for col in range(q):
                 mat1[row].append(mat2[row][col])
         if name is None:
             name = '[' + A.get_name() + ' ' + B.get_name() + ']'
         return Matrix.build(name, mat1)
+
 
 # TODO
 # * solution needs to be found for ef() and ref() returning improperly rounded
