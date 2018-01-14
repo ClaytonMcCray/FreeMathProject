@@ -1,1 +1,1 @@
-__all__ = ['matrix', 'vector']
+__all__ = ['matrix', 'functions']
