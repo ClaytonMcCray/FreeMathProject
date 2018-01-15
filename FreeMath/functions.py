@@ -11,7 +11,7 @@ class Function:
     def __init__(self, func: str):
         self.func = func
 
-    def get_function(self):
+    def get_function(self) -> str:
         return self.func
 
     # variables should be provided in a nested list: [['x', 2]] would evaluate the sentence
@@ -21,5 +21,8 @@ class Function:
         sentence = self.get_function()
         for var in args:
             sentence = sentence.replace(var[0], str(var[1]))
-        return eval(sentence)
-
+        try:
+            return eval(sentence)
+        except (NameError, SyntaxError):  # pretty sure most issues arising from inserted gibberish will be this type
+            print('Error: Mathematical Sentences must be in native Python 3.x Format!')
+            exit(1)

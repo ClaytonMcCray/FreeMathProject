@@ -58,7 +58,8 @@ class MatrixOperations:
         p, q = B.size()
         new_matrix = []
         if n != p:  # to assure no dimensional issues
-            raise IndexError('Inner dimensions must match!')
+            print('Error: Inner dimensions must match!')
+            exit(1)
 
         # (1) and (2) vary over the outer dimensions of A and B. These are the
         # dimensions of the product.
