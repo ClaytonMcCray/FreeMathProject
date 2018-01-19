@@ -1,6 +1,10 @@
-# This class will house various methods for evaluating mathematical
-# functions
+# This class will house various methods for evaluating mathematical functions
+# At the moment, the principle difference between this module and the future `complex.py` module are the
+# imported builtins
 from typing import List, Union, NewType
+from math import *  # this is here so that users can send functions with builtins
+# it shows as being unused, but that's not true. It's just not used until a user
+# passes a sentence with a function in it
 
 scalar = NewType('scalar', Union[float, int])
 
@@ -17,7 +21,8 @@ class Function:
     # variables should be provided in a nested list: [['x', 2]] would evaluate the sentence
     # for x = 2. The double nesting should be used even if only a single pair of arguments is passed.
     # for more arguments, just extend the list: [['x', 2], ['y', 3], ['z', 4]].
-    def evaluate(self, args: List) -> scalar:
+    # If the sentence has no variables, pass no arguments
+    def evaluate(self, args: List=[]) -> scalar:
         sentence = self.get_function()
         for var in args:
             sentence = sentence.replace(var[0], str(var[1]))
